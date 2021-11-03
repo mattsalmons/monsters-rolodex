@@ -10,11 +10,9 @@ class App extends Component {
       monsters: [],
       searchField: ''
     }
-
-    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
-  onSearchChange(e) {
+  handleChange = e => {
     this.setState({ searchField: e.target.value })
   }
 
@@ -29,7 +27,10 @@ class App extends Component {
     const filteredMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()));
     return (
       <div className="App">
-        <SearchBox onSearchChange={this.onSearchChange} searchField={this.searchField}/>
+        <SearchBox
+          placeholder='Search monsters'
+          handleChange={this.handleChange}
+        />
         <CardList monsters={filteredMonsters} />
       </div>
     )
