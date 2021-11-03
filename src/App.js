@@ -6,22 +6,16 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      monsters: []
+      monsters: [],
+      searchField: ''
     }
 
-    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
   }
 
-  handleButtonClick() {
-    if (this.state.string === 'Hello World :)') {
-      this.setState({
-        string: 'Goodbye World :('
-      });
-    } else {
-      this.setState({
-        string: 'Hello World :)'
-      });
-    }
+  onSearchChange(e) {
+    console.log(e.target.value);
+    this.setState({ searchField: e.target.value })
   }
 
   componentDidMount() {
@@ -33,6 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input type='search' placeholder='Search monsters' onChange={ this.onSearchChange }/>
         <CardList monsters={this.state.monsters} />
       </div>
     )
